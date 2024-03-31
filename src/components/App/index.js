@@ -12,13 +12,17 @@ const App = () => {
     // state pour stocker les données récupérée avec le call api
     // et pouvoir boucler dessus dans listOfResults
     const [cities, setCities] = useState([]);
+    // state pour gérer l'affichage du chargement des données
+    const [isLoading, setIsLoading] = useState(false);
 
     // call API
     const getCities = async (typeOfSearch) => {
         try {
+            setIsLoading(true);
             const response = await fetch(`https://geo.api.gouv.fr/communes?${typeOfSearch}=${search}`);
             const citiesList = await response.json();
             setCities(citiesList);
+            setIsLoading(false);
         } catch (error) {
             console.error(error);
             alert('Erreur de récupération des données')
@@ -45,7 +49,8 @@ const App = () => {
         <div>
             <h1>Trouve ta ville</h1>
             <SearchForm setSearch={setSearch} />
-            <ListOfResults cities={cities} />
+            {isLoading && <p>Veuillez patienter...</p>}
+            {!isLoading && <ListOfResults cities={cities} />}
             <BackToTop />
         </div>
     )
