@@ -5,7 +5,7 @@ const ChangePopulationFormat = ({ formatPop, setFormatPop }) => {
         // affection de la valeur inverse de formatPop à sa valeur courante (false par défaut)
         setFormatPop(!formatPop)
     }
-    console.log(formatPop)
+    // console.log(formatPop)
 
     return (
         <div>

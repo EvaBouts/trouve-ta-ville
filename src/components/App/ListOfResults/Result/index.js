@@ -1,4 +1,4 @@
-import formatPopulation from "../ChangePopulationFormat/formatPopulation";
+import formatPopulation from "../../../../utils/formatPopulation/formatPopulation.js";
 
 const Result = ({ name, zipCode, departmentCode, population, formatPop }) => {
 

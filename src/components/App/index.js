@@ -1,5 +1,6 @@
 import ListOfResults from "./ListOfResults";
 import SearchForm from "./SearchForm";
+import BackToTop from "./BackToTop";
 import { useState, useEffect } from "react";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
     // et pouvoir boucler dessus dans listOfResults
     const [cities, setCities] = useState([]);
 
+    // call API
     const getCities = async (typeOfSearch) => {
         try {
             const response = await fetch(`https://geo.api.gouv.fr/communes?${typeOfSearch}=${search}`);
@@ -23,6 +25,8 @@ const App = () => {
         }
     }
 
+    // useEffect pour définir quand faire le call API:
+    // au changement du state search
     useEffect(() => {
         // définition du format que devra respecter la valeur de l'input de la recherche par code postal
         const zipCodeformat = /^(?:[0-8]\d|9[0-8])\d{3}$/;
@@ -42,6 +46,7 @@ const App = () => {
             <h1>Trouve ta ville</h1>
             <SearchForm setSearch={setSearch} />
             <ListOfResults cities={cities} />
+            <BackToTop />
         </div>
     )
 }
